@@ -1,0 +1,24 @@
+.App-card{
+    background-color: #08bc7a;
+  
+  }
+  
+  .card-header{
+    background-color: #087837;
+    color: #790a0a;
+    font-weight: bold;
+    padding: 10px;
+  }
+  .App-card1{
+  
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 150px;
+  }
+  .App-card1:hover {
+    transform: scale(1.05); /* Increase size on hover */
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2); /* Apply box shadow */
+  }
+  .App-image{
+    width: 10px;
+    height: 100px;
+  }
