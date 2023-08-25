@@ -81,7 +81,7 @@ function Content() {
               marginBottom: '20px',
             }}
           >
-            <div className='card' style={{ cursor: 'pointer' }}>
+            <div className='card' style={{ cursor: 'pointer' }} >
               <img
                 style={{ height: '200px', objectFit: 'cover', borderTop: '10px solid white' }}
                 src="Images/janko-ferlic-sfL_QOnmy00-unsplash.jpg"

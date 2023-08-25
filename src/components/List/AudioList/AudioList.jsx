@@ -11,15 +11,14 @@ function AudioList() {
       "isRentable": true,
       "isLibrary": true,
       "rentPerDay": 0.0,
-      "minRentDays": 0.0
+      "minRentDays": 0.0,
+      "pdfUrl": "URL_TO_PDF_FILE" // Add the URL to your PDF file here
     }
   ]);
   let navigate = useNavigate();
 
   useEffect(() => {
-    
-  
-    fetch("http://localhost:8080/api/products/getByType/1", {
+    fetch("http://localhost:8080/api/products/getByType/2", {
       headers: {
         "Authorization": 'Bearer ' + localStorage.getItem("Token")
       }
@@ -32,7 +31,7 @@ function AudioList() {
       .catch(error => {
         console.error("Error fetching data:", error);
       });
-  },[]);
+  }, []);
 
   function addToCart(productId, type) {
     const customerId = 1;
@@ -58,19 +57,24 @@ function AudioList() {
       });
   }
 
+  function openPDF(pdfUrl) {
+    window.open(pdfUrl, '_blank');
+  }
+
   return (
     <div className='container'>
+      <h1 className='text-center'>Audio List</h1>
       <div className='row'>
         {list.map((listing, index) => (
           <div
             key={index}
             className='col-md-4 col-sm-6 audio-card' // Apply the "audio-card" class
           >
-            <div className='card' style={{ cursor: 'pointer' }}>
+            <div className='card' style={{ cursor: 'pointer' }} onClick={() => openPDF('Books/The whispering woods selected.pdf')}>
               <img
                 style={{ height: '200px', objectFit: 'cover', borderTop: '10px solid white' }}
                 src="Images/janko-ferlic-sfL_QOnmy00-unsplash.jpg"
-                alt={listing.name} // Change to listing.productName
+                alt={listing.productName}
                 className='card-img-top'
               />
               <div className='card-body'>
