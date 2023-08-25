@@ -23,7 +23,7 @@ function Navgation_01() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <NavDropdown title="Products" id="collasible-nav-dropdown">
-              <NavDropdown.Item className="nav-item" href="ebooklist">
+              <NavDropdown.Item className="" href="ebooklist">
                 eBook
               </NavDropdown.Item>
               <NavDropdown.Item href="/audiolist">Music</NavDropdown.Item>
@@ -38,8 +38,8 @@ function Navgation_01() {
             )}
           </Nav>
           <Nav>
-            <Nav.Link href="#pricing">About Us</Nav.Link>
-            <Nav.Link href="#pricing">Contact Us</Nav.Link>
+            <Nav.Link href="AboutUs">About Us</Nav.Link>
+            <Nav.Link href="ContactUs">Contact Us</Nav.Link>
             <Nav.Link href="/cart">Cart</Nav.Link>
             {!localStorage.getItem("Token") && (
               <Nav.Link href="/signin" className="btn btn-outline-success me-2">
