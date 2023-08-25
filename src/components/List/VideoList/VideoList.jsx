@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import './AudioList.css'; // Import your custom CSS file
+import './VideoList.css'; // Import your custom CSS file
 import { useNavigate } from 'react-router-dom';
 
-function AudioList() {
+function VideoList() {
   const [list, setList] = useState([
     {
       "id": 1,
@@ -100,4 +100,4 @@ function AudioList() {
   );
 }
 
-export default AudioList;
+export default VideoList;

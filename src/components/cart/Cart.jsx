@@ -55,7 +55,11 @@ function BeneficiaryList(props) {
   }
   
   useEffect(() => {
-    fetch("http://localhost:8080/api/cart/getallcart")
+    fetch("http://localhost:8080/api/cart/getallcart",{
+      headers:{
+        "Authorization":"Bearer "+localStorage.getItem("Token")
+      }
+    })
       .then((res) => {
         if (!res.ok) {
           throw new Error(`Request failed with status: ${res.status}`);
