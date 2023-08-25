@@ -32,7 +32,7 @@ function CarouselFadeExample() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src={"Images/slide2.jpg"}
+          src={"Img/slide2.jpg"}
           alt="Second slide"
         />
         <Carousel.Caption>

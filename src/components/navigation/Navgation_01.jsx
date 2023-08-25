@@ -16,7 +16,7 @@ function Navgation_01() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container fluid>
-        <Navbar.Brand href="home" className="me-auto">
+        <Navbar.Brand href="/" className="me-auto">
           BookWorm
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

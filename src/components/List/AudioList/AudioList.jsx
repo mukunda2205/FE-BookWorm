@@ -57,9 +57,7 @@ function AudioList() {
       });
   }
 
-  function openPDF(pdfUrl) {
-    window.open(pdfUrl, '_blank');
-  }
+
 
   return (
     <div className='container'>
@@ -70,7 +68,7 @@ function AudioList() {
             key={index}
             className='col-md-4 col-sm-6 audio-card' // Apply the "audio-card" class
           >
-            <div className='card' style={{ cursor: 'pointer' }} onClick={() => openPDF('Books/The whispering woods selected.pdf')}>
+            <div className='card' style={{ cursor: 'pointer' }} >
               <img
                 style={{ height: '200px', objectFit: 'cover', borderTop: '10px solid white' }}
                 src="Images/janko-ferlic-sfL_QOnmy00-unsplash.jpg"

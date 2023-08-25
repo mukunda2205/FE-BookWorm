@@ -56,10 +56,7 @@ function EBookList() {
       });
   }
 
-  function openPDF(pdfPath) {
-    const pdfUrl = `${process.env.PUBLIC_URL}/${pdfPath}`;
-    window.open(pdfUrl, '_blank');
-  }
+
 
   return (
     <div className='container'>
@@ -70,7 +67,7 @@ function EBookList() {
             key={index}
             className='col-md-4 col-sm-6 audio-card'
           >
-            <div className='card' style={{ cursor: 'pointer' }} onClick={() => openPDF('Books/The whispering woods selected.pdf')}>
+            <div className='card' style={{ cursor: 'pointer' }} >
               <img
                 style={{ height: '200px', objectFit: 'cover', borderTop: '10px solid white' }}
                 src="Images/janko-ferlic-sfL_QOnmy00-unsplash.jpg"

@@ -8,11 +8,15 @@
   padding: 20px;
   background-color: #f0f0f0;
 }
+.h-video{
+  font-family: system-ui;
+  text-decoration: none;
+}
 
 .custom-card {
   flex: 1;
-  min-width: 300px;
-  max-width: 400px;
+  /* min-width: 300px;
+  max-width: 400px; */
   border: none;
   background-color: #fff;
   position: relative;

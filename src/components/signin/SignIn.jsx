@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -52,6 +54,7 @@ function SignIn() {
     console.log("Email " + email + " password " + password);
 
     if (email.length === 0) {
+      console.log("Email not wriiten")
       toast.error("Please enter the email...");
     } else if (password.length === 0) {
       toast.error("Please enter the password...");
@@ -75,8 +78,9 @@ function SignIn() {
       .then(data => {
         console.log(data.jwtToken);
         localStorage.setItem("Token", data.jwtToken);
-        navigate("/",{num:0});
-      })
+        navigate(("/"), { replace: true });
+        
+      },("/"))
       .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
       });

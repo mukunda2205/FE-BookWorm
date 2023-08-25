@@ -16,6 +16,7 @@ import ContactUs from "./ContactUs.js"
 import AboutUs from "./AboutUs.js";
 import VideoList from "./components/List/VideoList/VideoList.jsx";
 import EBookList from "./components/List/EbookList/EBookList.jsx";
+import Home2 from "./components/Home/Home2.js";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
  
     <>
     <Navgation_01 /> 
+   
 
       <BrowserRouter>
         <Routes>
@@ -33,7 +35,7 @@ function App() {
            
             <Route path = "/videolist" element = {<VideoList/>}/>
         
-            <Route path = "/home" element = {<Home/>}/>
+            <Route path = "/" element = {<Home/>}/>
             <Route path = "category" element = {<Category/>}/>
             <Route path = "signin" element = {<SignIn/>}/>
             <Route path = "content" element = {<Content/>}/>
