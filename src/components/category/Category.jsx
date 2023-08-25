@@ -23,14 +23,14 @@ export default function Category() {
     <Product
       name={item.name}
       url={item.imageurl}
-      price={item.price}
-      description={item.description}
+    
+    
     />
   ));
 
   return (
     <div className="App">
-      <h1>React multi carousel</h1>
+      <h1>My Shelf</h1>
       <Carousel showDots={true} responsive={responsive}>
         {product}
       </Carousel>

@@ -17,8 +17,6 @@ function EBookList() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    
-  
     fetch("http://localhost:8080/api/products/getByType/1", {
       headers: {
         "Authorization": 'Bearer ' + localStorage.getItem("Token")
@@ -32,7 +30,7 @@ function EBookList() {
       .catch(error => {
         console.error("Error fetching data:", error);
       });
-  },[]);
+  }, []);
 
   function addToCart(productId, type) {
     const customerId = 1;
@@ -58,19 +56,25 @@ function EBookList() {
       });
   }
 
+  function openPDF(pdfPath) {
+    const pdfUrl = `${process.env.PUBLIC_URL}/${pdfPath}`;
+    window.open(pdfUrl, '_blank');
+  }
+
   return (
     <div className='container'>
+      <h1 className='text-center'>EBook List</h1>
       <div className='row'>
         {list.map((listing, index) => (
           <div
             key={index}
-            className='col-md-4 col-sm-6 audio-card' // Apply the "audio-card" class
+            className='col-md-4 col-sm-6 audio-card'
           >
-            <div className='card' style={{ cursor: 'pointer' }}>
+            <div className='card' style={{ cursor: 'pointer' }} onClick={() => openPDF('Books/The whispering woods selected.pdf')}>
               <img
                 style={{ height: '200px', objectFit: 'cover', borderTop: '10px solid white' }}
                 src="Images/janko-ferlic-sfL_QOnmy00-unsplash.jpg"
-                alt={listing.name} // Change to listing.productName
+                alt={listing.productName}
                 className='card-img-top'
               />
               <div className='card-body'>

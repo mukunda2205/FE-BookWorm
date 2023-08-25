@@ -19,7 +19,7 @@ function VideoList() {
   useEffect(() => {
     
   
-    fetch("http://localhost:8080/api/products/getByType/1", {
+    fetch("http://localhost:8080/api/products/getByType/3", {
       headers: {
         "Authorization": 'Bearer ' + localStorage.getItem("Token")
       }
@@ -60,6 +60,7 @@ function VideoList() {
 
   return (
     <div className='container'>
+           <h1 className='text-center'>Video List</h1>
       <div className='row'>
         {list.map((listing, index) => (
           <div
