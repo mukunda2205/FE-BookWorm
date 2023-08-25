@@ -12,7 +12,8 @@ import Category from "./components/category/Category.jsx";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Home from "./components/Home/Home.js";
 import AudioList from "./components/List/AudioList/AudioList.jsx";
-
+import ContactUs from "./ContactUs.js"
+import AboutUs from "./AboutUs.js";
 import VideoList from "./components/List/VideoList/VideoList.jsx";
 import EBookList from "./components/List/EbookList/EBookList.jsx";
 
@@ -36,6 +37,8 @@ function App() {
             <Route path = "category" element = {<Category/>}/>
             <Route path = "signin" element = {<SignIn/>}/>
             <Route path = "content" element = {<Content/>}/>
+            <Route path = "AboutUs" element = {<AboutUs/>}/>
+            <Route path = "ContactUs" element = {<ContactUs/>}/>
             <Route path = "cart" element = {<Cart/>}/>
             <Route path = "signup" element = {<SignUp/>}/>
 
