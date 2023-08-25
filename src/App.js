@@ -1,4 +1,4 @@
-import React from "react";
+
 
 import Navgation_01 from "./components/navigation/Navgation_01.jsx";
 import SignIn from "./components/signin/SignIn.jsx";
@@ -13,17 +13,25 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Home from "./components/Home/Home.js";
 import AudioList from "./components/List/AudioList/AudioList.jsx";
 
-function App() {
-  return (
-    // <div>
-    <>
-      <Navgation_01 />
+import VideoList from "./components/List/VideoList/VideoList.jsx";
+import EBookList from "./components/List/EbookList/EBookList.jsx";
 
+
+function App() {
+
+  return (
+ 
+    <>
+    <Navgation_01 /> 
 
       <BrowserRouter>
         <Routes>
 
-            <Route path = "/" element = {<AudioList/>}/>
+            <Route path = "/audiolist" element = {<AudioList/>}/>
+            <Route path = "/ebooklist" element = {<EBookList/>}/>
+           
+            <Route path = "/videolist" element = {<VideoList/>}/>
+        
             <Route path = "/home" element = {<Home/>}/>
             <Route path = "category" element = {<Category/>}/>
             <Route path = "signin" element = {<SignIn/>}/>

@@ -1,7 +1,3 @@
-
-
-
-
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -18,6 +14,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -32,15 +30,14 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
 
- function SignIn() {
+function SignIn() {
+  useEffect(() => {}, [localStorage.getItem("Token")]);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  let navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -50,9 +47,10 @@ const defaultTheme = createTheme();
       password: data.get('password'),
     });
   };
+
   function signinUser() {
     console.log("Email " + email + " password " + password);
-  
+
     if (email.length === 0) {
       toast.error("Please enter the email...");
     } else if (password.length === 0) {
@@ -61,7 +59,7 @@ const defaultTheme = createTheme();
       fetch("http://localhost:8080/auth/login", {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json' 
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           "email": email,
@@ -70,21 +68,21 @@ const defaultTheme = createTheme();
       })
       .then(response => {
         if (!response.ok) {
-          throw new Error('Network response was not ok'); 
+          throw new Error('Network response was not ok');
         }
         return response.json();
       })
       .then(data => {
         console.log(data.jwtToken);
-        localStorage.setItem("Token",data.jwtToken)
-
+        localStorage.setItem("Token", data.jwtToken);
+        navigate("/",{num:0});
       })
       .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
       });
     }
   }
-  
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -113,8 +111,8 @@ const defaultTheme = createTheme();
               name="email"
               autoComplete="email"
               autoFocus
-              onChange={(Event)=>{
-                setEmail((Event.target.value));
+              onChange={(event) => {
+                setEmail(event.target.value);
               }}
             />
             <TextField
@@ -126,8 +124,8 @@ const defaultTheme = createTheme();
               type="password"
               id="password"
               autoComplete="current-password"
-              onChange={(Event)=>{
-                setPassword(Event.target.value);
+              onChange={(event) => {
+                setPassword(event.target.value);
               }}
             />
             <FormControlLabel
@@ -139,7 +137,7 @@ const defaultTheme = createTheme();
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={()=>signinUser()}
+              onClick={() => signinUser()}
             >
               Sign In
             </Button>
@@ -162,4 +160,5 @@ const defaultTheme = createTheme();
     </ThemeProvider>
   );
 }
-export default SignIn
+
+export default SignIn;
