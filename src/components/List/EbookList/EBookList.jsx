@@ -70,7 +70,7 @@ function EBookList() {
             <div className='card' style={{ cursor: 'pointer' }} >
               <img
                 style={{ height: '200px', objectFit: 'cover', borderTop: '10px solid white' }}
-                src="Images/janko-ferlic-sfL_QOnmy00-unsplash.jpg"
+                src={listing.imagePath}
                 alt={listing.productName}
                 className='card-img-top'
               />

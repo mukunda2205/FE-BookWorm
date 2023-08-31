@@ -80,6 +80,23 @@ function BeneficiaryList(props) {
       });
   },[]);
   
+
+function placeOrder()
+{
+  fetch("http://localhost:8080/api/myshelf/addtoshell/1",{
+    method:"POST",
+    headers:{
+      "Authorization":"Bearer "+localStorage.getItem("Token")
+    }
+
+  }).then((res)=>res.json)
+  .then((res)=>{console.log("res")
+  window.confirm();
+  window.location.reload();
+  })
+  
+}
+
   return (
     <div className="beneficiary-list-container">
       <h2 className="section-heading">Cart Items</h2>
@@ -165,7 +182,7 @@ function BeneficiaryList(props) {
             </tbody>
           )}
         </table>
-        <button id="place" type="button" className="btn btn-primary">
+        <button id="place" type="button" className="btn btn-primary" onClick={()=>{placeOrder()}}>
           Place Order
         </button>
       </div>

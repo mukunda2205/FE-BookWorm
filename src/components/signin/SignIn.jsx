@@ -77,6 +77,7 @@ function SignIn() {
       })
       .then(data => {
         console.log(data.jwtToken);
+        
         localStorage.setItem("Token", data.jwtToken);
         navigate(("/"), { replace: true });
         
