@@ -4,7 +4,7 @@ import './ContactUs.css'; // Import your CSS file
 
 const ContactUs = () => {
   return (
-    <div className='mt-5'>
+    <div className='mt-5' style={{minHeight:"500px"}}>
       <header className="header">
         <h1>Contact Us</h1>
       </header>

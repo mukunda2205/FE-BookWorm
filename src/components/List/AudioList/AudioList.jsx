@@ -60,7 +60,7 @@ function AudioList() {
 
 
   return (
-    <div className='container'>
+    <div className='container' style={{minHeight:"500px"}}>
       <h1 className='text-center'>Audio List</h1>
       <div className='row'>
         {list.map((listing, index) => (

@@ -55,6 +55,7 @@ function App() {
         </Routes>
         <Outlet/>
       </BrowserRouter>
+      <Footer/>
       </>
     // </div>
   );

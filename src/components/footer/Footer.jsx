@@ -1,49 +1,24 @@
 import React from 'react';
-import {
-  MDBFooter,
-  MDBContainer,
-  MDBCol,
-  MDBRow,
-  MDBIcon,
-  MDBBtn
-} from 'mdb-react-ui-kit';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
-export default function Footer() {
+const Footer = () => {
   return (
-    <MDBFooter className='bg-dark text-center text-white'>
-      <MDBContainer className='p-4 pb-0'>
-        <section className='mb-4'>
-          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='facebook-f' />
-          </MDBBtn>
-
-          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='twitter' />
-          </MDBBtn>
-
-          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='google' />
-          </MDBBtn>
-          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='instagram' />
-          </MDBBtn>
-
-          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='linkedin-in' />
-          </MDBBtn>
-
-          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='github' />
-          </MDBBtn>
-        </section>
-      </MDBContainer>
-
-      <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-        © 2020 Copyright:
-        <a className='text-white' href='https://mdbootstrap.com/'>
-          MDBootstrap.com
+    <footer style={{ backgroundColor: 'black', color: 'white', padding: '20px' }}>
+      <div style={{ textAlign: 'center' }}>
+        <a href="https://www.facebook.com/SMVITAPGDAC/" target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faFacebook} size="2x" style={{ marginRight: '10px', color: 'white' }} />
         </a>
-      </div>
-    </MDBFooter>
+        <a href="https://www.instagram.com/your-instagram-account" target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faInstagram} size="2x" style={{ marginRight: '10px', color: 'white' }} />
+        </a>
+        <a href="https://www.youtube.com/@smvita4931" target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faYoutube} size="2x" style={{ color: 'white' }} />
+        </a>
+      </div >
+      <p style={{ marginTop: '10px',textAlign: 'center' }}>© {new Date().getFullYear()} All the Rights are reserved for BookWorm.com</p>
+    </footer>
   );
-}
+};
+
+export default Footer;

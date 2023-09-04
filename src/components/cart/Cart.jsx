@@ -119,8 +119,36 @@ function placeOrder()
   
 }
 
+
+function deleteById()
+{
+
+  const id = localStorage.getItem("id");
+  fetch("http://localhost:8080/api/cart/deleteFromCart/"+id,{
+    method:"GET",
+    headers:{
+      "Authorization":"Bearer "+localStorage.getItem("Token")
+    }
+
+  }).then((res)=>res.json)
+  .then((res)=>{
+    console.log("res"+res)
+  
+ 
+
+//   toast.success('Deleted Succesfully!', {
+//     position: toast.POSITION.TOP_RIGHT
+// });
+
+  })
+  
+}
+
+
+
+
   return (
-    <div className="beneficiary-list-container">
+    <div className="beneficiary-list-container" style={{minHeight:"500px"}}>
      <div className="section-heading-container">
   <h2 className="section-heading">Cart Items</h2>
 </div>
@@ -159,9 +187,10 @@ function placeOrder()
             <tr>
               <th>ID</th>
               <th>Name</th>
-              <th>Quantity</th>
+           
               <th>Price</th>
-              <th>Total</th>
+              <th>hell</th>
+            
             </tr>
           </thead>
 
@@ -171,10 +200,10 @@ function placeOrder()
                 <tr key={cart.id}>
                   <td>{cart.id}</td>
                   <td>{cart.productName}</td>
-                  <td>{cart.quantity}</td>
+               
                   <td>${cart.price}</td>
-                  <td>${cart.totalPrice}</td>
-                </tr>
+                  <td><button type="button" class="btn btn-danger" onClick={()=>{deleteById()}}>Delete</button></td>
+                  </tr>
               ))}
             </tbody>
           )}
@@ -185,9 +214,9 @@ function placeOrder()
                 <tr key={cart.id}>
                   <td>{cart.id}</td>
                   <td>{cart.productName}</td>
-                  <td>{cart.quantity}</td>
+                 
                   <td>${cart.price}</td>
-                  <td>${cart.totalPrice}</td>
+                
                 </tr>
               ))}
             </tbody>
@@ -199,9 +228,9 @@ function placeOrder()
                 <tr key={cart.id}>
                   <td>{cart.id}</td>
                   <td>{cart.productName}</td>
-                  <td>{cart.quantity}</td>
+                
                   <td>${cart.price}</td>
-                  <td>${cart.totalPrice}</td>
+                 
                 </tr>
               ))}
             </tbody>
