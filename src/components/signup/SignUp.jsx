@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -13,36 +14,43 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const defaultTheme = createTheme();
 
 function SignUp() {
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      const data = new FormData(event.currentTarget);
-      console.log({
-        name: data.get('name'),
-        email: data.get('email'),
-        contactNumber: data.get('contactNumber'),
-        address: data.get('address'),
-        password: data.get('password'),
-        confirmPassword: data.get('confirmPassword'),
-        profession: data.get('profession'),
-        occupation: data.get('occupation'),
-      });
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+
+   
+    const formData = {
+      customerName: data.get('name'),
+      customerEmail: data.get('email'),
+      password: data.get('password'),
+      customerContactNo: data.get('contactNumber'),
+      profession: data.get('profession'),
+      occupation: data.get('occupation'),
     };
+
+    try {
+      const response = await fetch('http://localhost:8080/api/customer/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('Token'),
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log('Registration successful');
+      } else {
+        console.error('Registration failed');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -63,7 +71,7 @@ function SignUp() {
             Sign up
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
+                       <TextField
               margin="normal"
               required
               fullWidth
@@ -140,6 +148,7 @@ function SignUp() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            
             <Button
               type="submit"
               fullWidth
@@ -150,22 +159,22 @@ function SignUp() {
             </Button>
 
             <Grid container justifyContent="space-between">
-            <Button
-              type="reset"
-              variant="outlined"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Reset
-            </Button>
-            <Button
-              variant="outlined"
-              color="secondary"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Cancel
-            </Button>
-          </Grid>
-            
+              <Button
+                type="reset"
+                variant="outlined"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Reset
+              </Button>
+              <Button
+                variant="outlined"
+                color="secondary"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Cancel
+              </Button>
+            </Grid>
+
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
@@ -180,10 +189,11 @@ function SignUp() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+     
       </Container>
     </ThemeProvider>
   );
 }
 
 export default SignUp;
+

@@ -2,15 +2,20 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons"; // Import the cart icon
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { useNavigate } from "react-router-dom";
+
 
 function Navgation_01() {
   
 
   function signOut() {
     localStorage.clear();
+  // navigate("/signin")
+    window.confirm("Are you sure, Press Ok to log out...")
     window.location.reload(); 
+    
   }
   
   return (
@@ -40,14 +45,15 @@ function Navgation_01() {
           <Nav>
             <Nav.Link href="AboutUs">About Us</Nav.Link>
             <Nav.Link href="ContactUs">Contact Us</Nav.Link>
-            <Nav.Link href="/cart">Cart</Nav.Link>
+            <Nav.Link href="/cart"><FontAwesomeIcon icon={faCartPlus} className="font-18" style={{ color: "#f2f4f8",width: "40px",
+                  height: "25px"}} /></Nav.Link>
             {!localStorage.getItem("Token") && (
               <Nav.Link href="/signin" className="btn btn-outline-success me-2">
                 Sign In
               </Nav.Link>
             )}
             {localStorage.getItem("Token") && (
-              <Nav.Link href="/" onClick={() => signOut()} className="btn btn-outline-success me-2">
+              <Nav.Link href="/signin" onClick={() => signOut()} className="btn btn-outline-success me-2">
                 Sign Out
               </Nav.Link>
             )}

@@ -5,34 +5,32 @@ import { useNavigate } from 'react-router-dom';
 function VideoList() {
   const [list, setList] = useState([
     {
-      "id": 1,
-      "productName": "eBook",
-      "price": 0.0,
-      "isRentable": true,
-      "isLibrary": true,
-      "rentPerDay": 0.0,
-      "minRentDays": 0.0
-    }
+      id: 1,
+      productName: "eBook",
+      price: 0.0,
+      rentable: false,
+      isLibrary: true,
+      rentPerDay: 0.0,
+      minRentDays: 0.0,
+    },
   ]);
   let navigate = useNavigate();
 
   useEffect(() => {
-    
-  
     fetch("http://localhost:8080/api/products/getByType/3", {
       headers: {
-        "Authorization": 'Bearer ' + localStorage.getItem("Token")
-      }
+        Authorization: 'Bearer ' + localStorage.getItem("Token"),
+      },
     })
-      .then(res => res.json())
-      .then(result => {
+      .then((res) => res.json())
+      .then((result) => {
         console.log("Result ", result);
         setList(result);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  },[]);
+  }, []);
 
   function addToCart(productId, type) {
     const customerId = 1;
@@ -41,37 +39,37 @@ function VideoList() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem("Token")
+        Authorization: 'Bearer ' + localStorage.getItem("Token"),
       },
       body: JSON.stringify({
         productId: productId,
         customerId: customerId,
-        type: type
-      })
+        type: type,
+      }),
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         console.log("Success", data);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error", error);
       });
   }
 
   return (
     <div className='container'>
-           <h1 className='text-center'>Video List</h1>
+      <h1 className='text-center'>Video List</h1>
       <div className='row'>
         {list.map((listing, index) => (
           <div
             key={index}
-            className='col-md-4 col-sm-6 audio-card' // Apply the "audio-card" class
+            className='col-md-4 col-sm-6 audio-card'
           >
             <div className='card' style={{ cursor: 'pointer' }}>
               <img
                 style={{ height: '200px', objectFit: 'cover', borderTop: '10px solid white' }}
                 src="Images/janko-ferlic-sfL_QOnmy00-unsplash.jpg"
-                alt={listing.name} // Change to listing.productName
+                alt={listing.productName}
                 className='card-img-top'
               />
               <div className='card-body'>
@@ -85,12 +83,14 @@ function VideoList() {
                   >
                     Buy
                   </button>
-                  <button
-                    className='btn btn-primary'
-                    onClick={() => addToCart(listing.id, "rent")}
-                  >
-                    Rent
-                  </button>
+                  {listing.rentable && (
+                    <button
+                      className='btn btn-primary'
+                      onClick={() => addToCart(listing.id, "rent")}
+                    >
+                      Rent
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

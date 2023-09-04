@@ -17,6 +17,7 @@ import AboutUs from "./AboutUs.js";
 import VideoList from "./components/List/VideoList/VideoList.jsx";
 import EBookList from "./components/List/EbookList/EBookList.jsx";
 import Home2 from "./components/Home/Home2.js";
+import Footer from "./components/footer/Footer.jsx";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
  
     <>
     <Navgation_01 /> 
+    {/* <Footer /> */}
    
 
       <BrowserRouter>

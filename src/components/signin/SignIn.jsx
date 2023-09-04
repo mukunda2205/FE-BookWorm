@@ -1,5 +1,7 @@
-import { ToastContainer } from 'react-toastify';
+
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -15,16 +17,16 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
-import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './SignIn.css'
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="/">
+        BookWorm.com
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -76,10 +78,23 @@ function SignIn() {
         return response.json();
       })
       .then(data => {
-        console.log(data.jwtToken);
-        
+        console.log(data);
         localStorage.setItem("Token", data.jwtToken);
-        navigate(("/"), { replace: true });
+        localStorage.setItem("id", data.userId);
+        localStorage.setItem("username", data.username);
+        
+        toast.success('You have been LogIn Successfully!', {
+          position: toast.POSITION.TOP_RIGHT
+      });
+        setTimeout(() => {
+          navigate(("/"), { replace: true });
+        }, 1000);
+        setTimeout(() => {
+          navigate((0), { replace: true });
+        }, 2000);
+      
+
+       
         
       },("/"))
       .catch(error => {
@@ -90,7 +105,7 @@ function SignIn() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" className="signin-container">
         <CssBaseline />
         <Box
           sx={{
@@ -99,6 +114,7 @@ function SignIn() {
             flexDirection: 'column',
             alignItems: 'center',
           }}
+          className="signin-form"
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
@@ -162,6 +178,7 @@ function SignIn() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
+      <ToastContainer/>
     </ThemeProvider>
   );
 }

@@ -1,11 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Cart.css";
+import ConfirmationDialog from "../confirm/ConfirmationDialog";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function BeneficiaryList(props) {
   // const [beneficiary, setBeneficiary] = useState([]);
   const [selectedOption, setSelectedOption] = useState("all");
+  
+  const navigate = useNavigate();
+
+  
 
   const [cartItem, setCartItem] = useState([
     {
@@ -83,23 +90,41 @@ function BeneficiaryList(props) {
 
 function placeOrder()
 {
-  fetch("http://localhost:8080/api/myshelf/addtoshell/1",{
+
+  const id = localStorage.getItem("id");
+  fetch("http://localhost:8080/api/myshelf/addtoshell/"+id,{
     method:"POST",
     headers:{
       "Authorization":"Bearer "+localStorage.getItem("Token")
     }
 
   }).then((res)=>res.json)
-  .then((res)=>{console.log("res")
-  window.confirm();
-  window.location.reload();
+  .then((res)=>{
+    console.log("res")
+  
+  window.confirm("Are you sure, Press Ok to confirm...");
+
+  toast.success('You have been LogIn Successfully!', {
+    position: toast.POSITION.TOP_RIGHT
+});
+  setTimeout(() => {
+    navigate(("/category"), { replace: true });
+  }, 1000);
+  setTimeout(() => {
+    navigate((0), { replace: true });
+  }, 2000);
+  
+  
   })
   
 }
 
   return (
     <div className="beneficiary-list-container">
-      <h2 className="section-heading">Cart Items</h2>
+     <div className="section-heading-container">
+  <h2 className="section-heading">Cart Items</h2>
+</div>
+
       <div className="add-beneficiary-button"></div>
       <div className="options-container">
       <div className="options-buttons">
@@ -186,6 +211,7 @@ function placeOrder()
           Place Order
         </button>
       </div>
+      <ToastContainer/>
     </div>
   );
 }
